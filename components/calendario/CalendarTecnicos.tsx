@@ -7,6 +7,7 @@ import './styles/rbc-overrides.css';
 
 // Components
 import { CalendarHeader } from './components/CalendarHeader';
+import { CalendarToolbar } from './components/CalendarToolbar';
 import { EventModal } from './components/EventModal';
 import { EventRenderer } from './components/EventRenderer';
 import { LegendFilter } from './components/LegendFilter';
@@ -435,6 +436,13 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
             style={{ height: '100%', width: '100%' }}
             components={{
               event: EventRenderer,
+              toolbar: (props: any) => (
+                <CalendarToolbar
+                  {...props}
+                  localizer={localizer}
+                  lang={lang}
+                />
+              ),
               resourceHeader: currentView === Views.DAY && perTechnician ? 
                 (props: any) => {
                   const res = props.resource ?? 
