@@ -1,0 +1,30 @@
+/* React Big Calendar Custom Overrides */
+/* Solo se necesita si Tailwind no puede cubrir todos los estilos */
+
+/* Asegurar que el calendario tenga el tamaño correcto */
+.rbc-calendar {
+  font-family: inherit;
+}
+
+/* Mejorar la legibilidad en eventos pequeños */
+.rbc-event {
+  font-size: 12px !important;
+}
+
+/* Estilos para notas (eventos especiales) */
+.rbc-event.note-event {
+  font-style: italic;
+  opacity: 0.8;
+  border-style: dashed !important;
+}
+
+/* Hover effects para eventos */
+.rbc-event:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+/* Allow pointer events on resource headers */
+.rbc-time-header .rbc-row-resource {
+  pointer-events: auto;
+}
