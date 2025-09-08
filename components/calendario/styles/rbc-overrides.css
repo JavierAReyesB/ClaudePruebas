@@ -28,3 +28,68 @@
 .rbc-time-header .rbc-row-resource {
   pointer-events: auto;
 }
+
+/* Ocultar fila all-day en vista Día y vista por técnico */
+.rbc-day-view .rbc-allday-cell,
+.rbc-day-view .rbc-allday-events,
+.rbc-day-view .rbc-row.rbc-allday-cell,
+.rbc-day-view .rbc-time-header .rbc-allday-cell,
+.rbc-day-view .rbc-time-header-content .rbc-allday-cell,
+.rbc-day-view .rbc-time-header-gutter .rbc-allday-cell,
+.rbc-day-view .rbc-time-header .rbc-row:has(.rbc-allday-cell),
+.rbc-day-view .rbc-allday-events-container,
+.rbc-day-view .rbc-time-header .rbc-allday-events,
+.rbc-day-view .rbc-time-content .rbc-allday-events {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Línea limpia bajo la cabecera */
+.rbc-day-view .rbc-time-header {
+  border-bottom: 1px solid #e5e7eb; /* tailwind slate-200 aprox */
+}
+
+/* Ocultar completamente filas vacías bajo headers de recursos */
+.rbc-day-view .rbc-time-header .rbc-header {
+  border-bottom: none !important;
+}
+
+.rbc-day-view .rbc-time-content .rbc-time-column .rbc-allday-events {
+  display: none !important;
+}
+
+/* Eliminar cualquier espacio residual en columnas de recursos */
+.rbc-day-view .rbc-time-column .rbc-allday-events,
+.rbc-day-view .rbc-time-slot-group .rbc-allday-events,
+.rbc-day-view .rbc-timeslot-group .rbc-allday-events {
+  display: none !important;
+  height: 0 !important;
+}
+
+/* Reglas específicas para la vista de tiempo - eliminar completamente All-day */
+.rbc-time-view .rbc-allday-cell,
+.rbc-time-view .rbc-allday-events,
+.rbc-time-view .rbc-allday-events-container,
+.rbc-time-view .rbc-row.rbc-allday-cell,
+.rbc-time-view .rbc-time-header .rbc-allday-cell,
+.rbc-time-view .rbc-time-header-content .rbc-allday-cell,
+.rbc-time-view .rbc-time-header-gutter .rbc-allday-cell,
+.rbc-time-view .rbc-time-header .rbc-row:has(.rbc-allday-cell),
+.rbc-time-view .rbc-time-header .rbc-allday-events,
+.rbc-time-view .rbc-time-content .rbc-allday-events {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Forzar fondo blanco en el header de tiempo si es necesario */
+.rbc-time-view .rbc-time-header {
+  background-color: white !important;
+}

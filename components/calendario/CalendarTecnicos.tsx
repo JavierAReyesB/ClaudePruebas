@@ -430,6 +430,8 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
             selectable={true}
             onSelectSlot={handleSelectSlot}
             onSelectEvent={handleSelectEvent}
+            allDayAccessor={() => false}
+            showMultiDayTimes={true}
             resources={currentView === Views.DAY && perTechnician ? shownResourcesWithZones : undefined}
             resourceIdAccessor="id"
             resourceTitleAccessor="title"
