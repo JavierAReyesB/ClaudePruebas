@@ -7,6 +7,7 @@ import './styles/rbc-overrides.css';
 
 // Components
 import { CalendarHeader } from './components/CalendarHeader';
+import { CalendarToolbar } from './components/CalendarToolbar';
 import { EventModal } from './components/EventModal';
 import { EventRenderer } from './components/EventRenderer';
 import { LegendFilter } from './components/LegendFilter';
@@ -219,9 +220,15 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
     shownResources.map(r => ({
       ...r,
       avatarColor: r.color,
-      location: "Cáceres",  // Placeholder - replace with actual data
       timeLabel: "08:00–17:00",  // Placeholder - replace with actual data
-      zones: getTechnicianZones(r.id)
+      locations: ["Cáceres", "Badajoz", "Plasencia", "Mérida", "Don Benito"].slice(0, Math.floor(Math.random() * 5) + 1), // Placeholder - up to 5 locations
+      zones: getTechnicianZones(r.id),
+      training: [
+        "HVAC Básico", 
+        "Electricidad Industrial", 
+        "Soldadura TIG", 
+        "PRL Altura"
+      ] // Placeholder training data
     })),
     [shownResources]
   );
@@ -247,13 +254,7 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
     console.log('unassign', id);
   }, []);
 
-  const onTraining = useCallback((id: number) => {
-    console.log('training', id);
-  }, []);
 
-  const onNew = useCallback((id: number) => {
-    console.log('new', id);
-  }, []);
 
   const eventPropGetter = useCallback((event: any) => {
     return getEventStyles(event, tecnicos);
@@ -396,6 +397,11 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
             ? { shown: shownResourceIds.length, total: selectedTecnicos.length || allResources.length }
             : undefined
         }
+        currentView={currentView}
+        onView={setCurrentView}
+        currentDate={currentDate}
+        onNavigate={setCurrentDate}
+        localizer={localizer}
       />
       
       {/* Contenedor del calendario */}
@@ -429,11 +435,14 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
             selectable={true}
             onSelectSlot={handleSelectSlot}
             onSelectEvent={handleSelectEvent}
+            allDayAccessor={() => false}
+            showMultiDayTimes={true}
             resources={currentView === Views.DAY && perTechnician ? shownResourcesWithZones : undefined}
             resourceIdAccessor="id"
             resourceTitleAccessor="title"
             style={{ height: '100%', width: '100%' }}
             components={{
+              toolbar: () => null,  // Disable native RBC toolbar
               event: EventRenderer,
               resourceHeader: currentView === Views.DAY && perTechnician ? 
                 (props: any) => {
@@ -449,8 +458,6 @@ const CalendarTecnicos: React.FC<CalendarTecnicosProps> = ({
                       onKpi={onKpi}
                       onAssign={onAssign}
                       onUnassign={onUnassign}
-                      onTraining={onTraining}
-                      onNew={onNew}
                     />
                   );
                 }
