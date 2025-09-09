@@ -93,3 +93,15 @@
 .rbc-time-view .rbc-time-header {
   background-color: white !important;
 }
+
+/* Altura controlada del row de recursos (header) */
+.rbc-day-view .rbc-time-header .rbc-row-resource {
+  min-height: 56px;
+  max-height: 56px;   /* evita crecimiento vertical */
+  align-items: center;
+}
+
+/* Oculta cualquier toolbar residual del RBC */
+.rbc-toolbar { 
+  display: none !important; 
+}
